@@ -1,0 +1,225 @@
+<Manager>:
+    Login:
+        name: "login"
+    Entrou:
+        name: "entrou"
+    Registrar:
+        name: "registrar"
+<Registrar>:
+    BoxLayout:
+        orientation:"vertical"
+        canvas:
+            Color:
+                rgba:0.1, 0.5, 0.7, 1
+            Rectangle:
+                pos:self.pos
+                size:self.size
+        padding:0, "25dp"
+        BoxLayout:
+            size_hint_y:None
+            height:"100dp"
+            Label:
+                text:"Cadastro"
+                font_size:"30sp"
+                bold:True
+                size_hint_x:None
+                id:tituloCad
+                width:"300dp"
+        BoxLayout:
+            orientation:"vertical"
+            ScrollView:
+                BoxLayout:
+                    orientation:"vertical"
+                    size_hint_y:None
+                    height:self.minimum_height
+                    padding:root.width*0.20, "10dp"
+                    spacing:"30dp"
+                    BoxLayout:
+                        orientation:"vertical"
+                        size_hint_y:None
+                        height:"70dp"
+                        Label:
+                            font_size:"15sp"
+                            bold:True
+                            text:"Nome"
+                            size_hint_x:None
+                            width:"150dp"
+                            id:nomeText
+                        TextInput:
+                            id:nomeCad
+                            hint_text:"Digite seu nome"
+                            size_hint_y:None
+                            height:"40dp"
+                            multiline:False
+                            on_focus:root.redefined()
+                    BoxLayout:
+                        orientation:"vertical"
+                        size_hint_y:None
+                        height:"70dp"
+                        Label:
+                            font_size:"15sp"
+                            bold:True
+                            text:"E-mail"
+                            size_hint_x:None
+                            width:"150dp"
+                            id:emailText
+                        TextInput:
+                            id:emailCad
+                            hint_text:"Digite seu E-mail"
+                            size_hint_y:None
+                            height:"40dp"
+                            multiline:False
+                            on_focus:root.redefined()
+                    BoxLayout:
+                        orientation:"vertical"
+                        size_hint_y:None
+                        height:"70dp"
+                        Label:
+                            font_size:"15sp"
+                            bold:True
+                            text:"Senha"
+                            size_hint_x:None
+                            width:"150dp"
+                            id:senhaText
+                        TextInput:
+                            id:senhaCad
+                            hint_text:"Digite sua senha"
+                            size_hint_y:None
+                            height:"40dp"
+                            multiline:False
+                            password:True
+                            on_focus:root.redefined()
+                    BoxLayout:
+                        orientation:"vertical"
+                        size_hint_y:None
+                        height:"70dp"
+                        Label:
+                            font_size:"15sp"
+                            bold:True
+                            text:"Confirmar senha"
+                            size_hint_x:None
+                            width:"150dp"
+                            id:senhacText
+                        TextInput:
+                            id:senhacCad
+                            hint_text:"Digite sua senha novamente"
+                            size_hint_y:None
+                            height:"40dp"
+                            multiline:False
+                            password:True
+                            on_focus:root.redefined()
+            BoxLayout:
+                size_hint_y:None
+                height:"90dp"
+                padding:root.width * 0.36, 0
+                ButtonOk:
+                    text:"Pronto!"
+                    size_hint_y:None
+                    height:"60dp"
+                    bold:True
+                    font_size:"18sp"
+                    on_release:root.entrar()
+<Entrou>:
+    BoxLayout:
+        orientation:"vertical"
+        canvas:
+            Color:
+                rgba:0.1, 0.5, 0.7, 1
+            Rectangle:
+                pos:self.pos
+                size:self.size
+        padding:0, root.height*0.3
+        Label:
+            text:"Parabéns você Entrou!"
+            font_size:30
+            color: 1, 0, 0, 1
+            bold:True
+            id:entrou
+        BoxLayout:
+            padding:root.width*0.20, 0
+            ButtonOk:
+                text:"Sair"
+                font_size:"18sp"
+                bold:True
+                size_hint_y:None
+                height:"60dp"
+                on_release:app.root.current = "login"
+<Login>:
+    BoxLayout:
+        orientation: "vertical"
+        canvas:
+            Color:
+                rgba:0.1, 0.5, 0.7, 1
+            Rectangle:
+                pos:self.pos
+                size:self.size
+        padding:root.width*0.20, root.height*0.1
+        spacing:"30dp"
+        BoxLayout:
+            size_hint:None, None
+            size:"220dp","180dp"
+            Label:
+                text:"Sistema de login"
+                font_size:"30sp"
+                bold:True
+        BoxLayout:
+            orientation:"vertical"
+            BoxLayout:
+                orientation:"vertical"
+                size_hint_y:None
+                height:"100dp"
+                Label:
+                    text:"E-mail"
+                    size_hint_x:None
+                    width:"70dp"
+                    bold:True
+                    id:emailT
+                TextInput:
+                    hint_text:"Digite seu E-mail"
+                    size_hint_y:None
+                    multiline:False
+                    height:"40dp"
+                    id:email
+                    on_focus:root.limpar()
+            BoxLayout:
+                orientation:"vertical"
+                size_hint_y:None
+                height:"100dp"
+                Label:
+                    text:"Senha"
+                    size_hint_x:None
+                    width:"70dp"
+                    bold:True
+                    id:senhaT
+                TextInput:
+                    hint_text:"Digite sua senha"
+                    size_hint_y:None
+                    height:"40dp"
+                    password:True
+                    id:senha
+                    multiline:False
+                    on_focus:root.limpar()
+        BoxLayout:
+            spacing:"40dp"
+            padding:0, self.height / 4
+            ButtonOk:
+                text:"Entrar"
+                font_size:"20sp"
+                on_release:root.entrar()
+                bold:True
+            CadastroButton:
+                text:"Não tem cadastro?"
+                on_release:app.root.current = "registrar"
+
+<ButtonOk@ButtonBehavior+Label>:
+    canvas.before:
+        Color:
+            rgba:1, .7, 0, 1
+        RoundedRectangle:
+            pos:self.pos
+            size:self.size
+            radius:[20]
+<CadastroButton@ButtonBehavior+Label>:
+    color: 0, 1, 1, 1
+    font_size: "20sp"
+    bold: True
